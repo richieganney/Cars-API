@@ -8,6 +8,13 @@ class CarController {
     this.dbContext = dbContext;
   }
 
+  get dbContext() {
+    return this.dbContext;
+  }
+  // set dbContext(newDbContext) {
+  //   return this.dbContext = newDbContext;
+  // }
+
   list_all_cars() {
     return this.dbContext.AllCars();
   };
