@@ -2,10 +2,10 @@
 
 module.exports = function(app) {
   var cc = require('../controllers/carsController');
-  // var db = require('../database/mongodb');
+  var db = require('../databases/mongooseContext');
 
-  // const dbContext = new db();
-  const carController = new cc();
+  const dbContext = new db(process.env.MONGO_ENDPOINT);
+  const carController = new cc(dbContext);
 
   // cars Routes
   app.route('/cars')

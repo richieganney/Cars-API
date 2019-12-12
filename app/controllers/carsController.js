@@ -1,19 +1,15 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-Car = mongoose.model('Car');
+var mongoose = require('mongoose');
+// Car = mongoose.model('Car');
 
 class CarController {
-
-  constructor() {
+  constructor(dbContext) {
+    this.dbContext = dbContext;
   }
 
-  list_all_cars(req, res) {
-    Car.find({}, function(err, car) {
-      if (err)
-        res.send(err);
-      res.json(car);
-    });
+  list_all_cars() {
+    return this.dbContext.AllCars();
   };
 
   create_car(req, res) {
