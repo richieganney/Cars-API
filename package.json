@@ -21,7 +21,13 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.7.2",
     "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
     "mongoose": "^5.8.0"
   }
 }

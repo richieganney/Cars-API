@@ -1,14 +1,18 @@
 'use strict';
 
 module.exports = function(app) {
-  var cars = require('../controllers/carsController');
+  var cc = require('../controllers/carsController');
+  // var db = require('../database/mongodb');
+
+  // const dbContext = new db();
+  const carController = new cc();
 
   // cars Routes
   app.route('/cars')
-    .get(cars.list_all_cars)
-    .post(cars.create_car);
+    .get(carController.list_all_cars)
+    .post(carController.create_car);
   app.route('/cars/:carId')
-    .get(cars.show_car)
-    .put(cars.update_car)
-    .delete(cars.delete_car);
+    .get(carController.show_car)
+    .put(carController.update_car)
+    .delete(carController.delete_car);
 };
