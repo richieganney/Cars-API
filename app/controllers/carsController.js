@@ -37,6 +37,6 @@ exports.delete_car = function(req, res) {
   }, function(err, car) {
     if (err)
       res.send(err);
-    res.json({ message: 'Car successfully ' });
+    res.json({ message: 'Car successfully removed' });
   });
 };
