@@ -17,9 +17,9 @@ mongoose.connect(process.env.MONGO_ENDPOINT);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./app/routes/carsRoutes'); //importing route
-
-routes(app); //register the route
+var r = require('./app/routes/carsRoutes'); //importing route
+var carAPI = new r();
+carAPI.routes(app); //register the route
 
 app.listen(port);
 console.log('Cars API server started on: ' + port);
