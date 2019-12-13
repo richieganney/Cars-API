@@ -1,55 +1,24 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-Car = mongoose.model('Car');
+var db = require('../databases/mongooseContext');
 
-class CarController {
+class carsController {
 
-  constructor() {
+  constructor(){
+    this.carController = new db();
   }
-
-  list_all_cars(req, res) {
-    Car.find({}, function(err, car) {
-      if (err)
-        res.send(err);
-      res.json(car);
-    });
-  };
-
-  create_car(req, res) {
-    var new_car = new Car(req.body);
-    new_car.save(function(err, car) {
-      if (err)
-        res.send(err);
-      res.json(car);
-    });
-  };
-
-  show_car(req, res) {
-    Car.findById(req.params.carId, function(err, car) {
-      if (err)
-        res.send(err);
-      res.json(car);
-    });
-  };
-
-  update_car(req, res) {
-    Car.findOneAndUpdate({_id: req.params.carId}, req.body, {new: true}, function(err, car) {
-      if (err)
-        res.send(err);
-      res.json(car);
-    });
-  };
-
-  delete_car(req, res) {
-    Car.remove({
-      _id: req.params.carId
-    }, function(err, car) {
-      if (err)
-        res.send(err);
-      res.json({ message: 'Car successfully removed' });
-    });
+  routes(app){
+    // var db = require('../database/mongodb');
+    // const dbContext = new db();
+    // cars Routes
+    app.route('/cars')
+      .get(this.carController.list_all_cars)
+      .post(this.carController.create_car);
+    app.route('/cars/:carId')
+      .get(this.carController.show_car)
+      .put(this.carController.update_car)
+      .delete(this.carController.delete_car);
   };
 }
 
-module.exports = CarController;
+module.exports = carsController;
